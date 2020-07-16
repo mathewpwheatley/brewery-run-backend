@@ -19,33 +19,33 @@ class UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: {users: users.each{|user| UserSerializer.new(user)}}, status: :ok
+    render json: users, serializer_each: UserSerializer, status: :ok
   end
 
   def show
-    render json: {user: UserSerializer.new(@user)}, status: :created
+    render json: @user, serializer: UserSerializer, status: :ok
   end
 
   def create
     user = User.create(user_params)
     if user.vaild?
-      render json: {user: UserSerializer.new(user)}, status: :created
+      render json: user, serializer: UserSerializer, status: :created
     else
-      render_errors
+      render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def update
-    user.update(user_params)
-    if user.valid?
-      render json: {user: UserSerializer.new(user)}, status: :accepted
+    @user.update(user_params)
+    if @user.valid?
+      render json: @user, serializer: UserSerializer, status: :accepted
     else
-      render_errors
+      render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def destroy
-    user.destroy
+    @user.destroy
     render json: {status: :no_content}
   end
 
@@ -63,11 +63,6 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through, limit that set further for login
   def user_login_params
     params.require(:user).permit(:email, :password)
-  end
-
-  # Render error messages if create/update fail
-  def render_errors
-    render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
   end
 
 end

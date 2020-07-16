@@ -9,6 +9,7 @@ class BreweriesController < ApplicationController
   end
 
   def show
+    render json: {user: BrewerySerializer.new(@brewery)}, status: :ok
   end
 
   def create
@@ -16,37 +17,32 @@ class BreweriesController < ApplicationController
     if brewery.vaild?
       render json: {brewery: BrewerySerializer.new(brewery)}, status: :created
     else
-      render_errors
+      render json: {errors: brewery.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def update
-    brewery.update(brewery_params)
-    if brewery.valid?
-      render json: {brewery: BrewerySerializer.new(brewery)}, status: :accepted
+    @brewery.update(brewery_params)
+    if @brewery.valid?
+      render json: {brewery: BrewerySerializer.new(@brewery)}, status: :accepted
     else
-      render_errors
+      render json: {errors: @brewery.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def destroy
-    brewery.destroy
+    @brewery.destroy
     render json: {status: :no_content}
   end
 
   private
   def set_brewery
-    brewery = Brewery.find(params[:id])
+    @brewery = Brewery.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def brewery_params
     params.require(:brewery).permit(:name, :brewery_type, :street, :city, :state, :postal_code, :country, :longitude, :latitude, :phone, :website_url, :tag_list)
-  end
-
-  # Render error messages if create/update fail
-  def render_errors
-    render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
   end
 
 end

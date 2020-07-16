@@ -1,3 +1,3 @@
 class BrewerySerializer < ActiveModel::Serializer
-  attributes(:name, :brewery_type, :full_house, :phone, :website_url)
+  attributes(:id, :name, :brewery_type, :full_address, :phone, :website_url)
 end

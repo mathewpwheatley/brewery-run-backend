@@ -1,3 +1,3 @@
 class CircuitSerializer < ActiveModel::Serializer
-  attributes(:title, :description, :public, :breweries)
+  attributes(:id, :title, :description, :public)
 end
