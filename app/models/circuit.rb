@@ -2,6 +2,7 @@ class Circuit < ApplicationRecord
     # ActiveRecord Relationships
     belongs_to(:user)
     has_many(:breweries_circuits)
+    has_many(:breweries, through: :breweries_circuits)
     has_many(:circuit_favorites)
     has_many(:circuit_likes)
     has_many(:circuit_reviews)

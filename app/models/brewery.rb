@@ -1,6 +1,7 @@
 class Brewery < ApplicationRecord
     # ActiveRecord Relationships
     has_many(:breweries_circuits)
+    has_many(:circuits, through: :breweries_circuits)
     has_many(:brewery_favorites)
     has_many(:brewery_likes)
     has_many(:brewery_reviews)
