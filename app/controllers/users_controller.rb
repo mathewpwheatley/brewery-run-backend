@@ -1,20 +1,32 @@
 class UsersController < ApplicationController
   # I dont think this is required since the login assigns a user
-  before_action :set_user, only: [:log_in, :show, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy]
   
   # authorized comes from ApplicationController 
   skip_before_action :authorized#, only: [:log_in, :create]
  
   def log_in
     user = User.find_by_email(user_login_params[:email])
-    #User#authenticate comes from BCrypt
-    if user && user.authenticate(user_login_params[:password])
-      # encode token comes from ApplicationController
-      token = encode_token({user_id: user.id})
-      render json: {user: UserSerializer.new(user), jwt: token}, status: :accepted
+    if !user
+      render json: {errors: ['Invalid email']}, status: :unauthorized
     else
-      render json: {message: 'Invalid username or password'}, status: :unauthorized
+      #User#authenticate comes from BCrypt
+      if user.authenticate(user_login_params[:password])
+        # encode token comes from ApplicationController
+        token = encode_token({user_id: user.id})
+        # Create cookie which is sent with request automatically
+        cookies.signed[:jwt] = {value: token, httponly: true, expires: 2.hour}
+        
+        # Render json (with cookies)
+        render json: user, serializer: UserSerializer, status: :accepted
+      else
+        render json: {errors: ['Invalid password']}, status: :unauthorized
+      end
     end
+  end
+
+  def log_out
+    cookies.signed[:jwt].destroy
   end
 
   def index
