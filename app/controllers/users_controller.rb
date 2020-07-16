@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   # I dont think this is required since the login assigns a user
-  # before_action :set_user, only: [:log_in, :show, :update, :destroy]
+  before_action :set_user, only: [:log_in, :show, :update, :destroy]
   
   # authorized comes from ApplicationController 
-  skip_before_action :authorized, only: [:log_in, create]
+  skip_before_action :authorized#, only: [:log_in, :create]
  
   def log_in
     user = User.find_by_email(user_login_params[:email])
@@ -19,11 +19,11 @@ class UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: {user: UserSerializer.new(users)}, status: :ok
+    render json: {users: users.each{|user| UserSerializer.new(user)}}, status: :ok
   end
 
   def show
-    render json: {user: UserSerializer.new(user)}, status: :created
+    render json: {user: UserSerializer.new(@user)}, status: :created
   end
 
   def create
@@ -51,9 +51,9 @@ class UsersController < ApplicationController
 
   private
   # I dont think this is required since the login assigns a user
-  # def set_user
-  #   user = User.find(params[:id])
-  # end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   # Only allow a list of trusted parameters through.
   def user_params
