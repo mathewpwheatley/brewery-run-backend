@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   resources :notifications, except: [:new, :edit]
 
   resources :users, except: [:new, :edit]
-  post '/login', to: 'users#login'
+  post '/log-in', to: 'users#log_in'
 
 end
