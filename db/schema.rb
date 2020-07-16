@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(version: 2020_07_14_200914) do
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
-    t.string "first_name"
-    t.string "middle_name"
+    t.string "first_name", null: false
+    t.string "middle_name", null: false
     t.string "last_name"
     t.string "street"
     t.string "city"
@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(version: 2020_07_14_200914) do
     t.string "about"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email"
   end
 
   add_foreign_key "brewery_favorites", "breweries", on_delete: :cascade
