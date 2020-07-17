@@ -4,8 +4,8 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :email, null: false
       t.string :password_digest, null: false
       t.string :first_name, null: false
-      t.string :middle_name, null: false
-      t.string :last_name
+      t.string :middle_name
+      t.string :last_name, null: false
       t.string :street
       t.string :city
       t.string :state

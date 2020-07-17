@@ -5,7 +5,7 @@ class BreweriesController < ApplicationController
 
   def index
     breweries = Brewery.all
-    render json: {breweries: BrewerySerializer.new(breweries)}, status: :ok
+    render json: breweries, serializer_each: BrewerySerializer, status: :ok
   end
 
   def show
