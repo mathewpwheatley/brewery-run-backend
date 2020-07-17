@@ -32,9 +32,9 @@ class Brewery < ApplicationRecord
 
     def rating
         if reviews_count > 0 
-            self.brewery_reviews.reduce(0){|sum, review| sum + review.rating}/self.reviews_count
+            self.brewery_reviews.reduce(0){|sum, review| sum + review.rating}.to_f/self.reviews_count
         else
-            "Not Yet Rated"
+            "N/A"
         end
     end
 
