@@ -12,13 +12,7 @@ class UsersController < ApplicationController
     else
       #User#authenticate comes from BCrypt
       if user.authenticate(user_login_params[:password])
-        # encode token comes from ApplicationController
-        token = encode_token({user_id: user.id})
-        # Create cookie which is sent with request automatically
-        cookies.signed[:jwt] = {value: token, httponly: true, expires: 2.hour}
-        # Render json (with cookies)
-        render json: user, serializer: LogInSerializer, status: :accepted
-        # render json: user, serializer: UserSerializer, status: :accepted
+        log_in_response(user)
       else
         render json: {errors: ['Invalid password']}, status: :unauthorized
       end
@@ -41,7 +35,7 @@ class UsersController < ApplicationController
   def create
     user = User.create(user_params)
     if user.valid?
-      render json: user, serializer: LogInSerializer, status: :created
+      log_in_response(user)
     else
       render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
     end
@@ -75,6 +69,15 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through, limit that set further for login
   def user_login_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def log_in_response(user)
+    # encode token comes from ApplicationController
+    token = encode_token({user_id: user.id})
+    # Create cookie which is sent with request automatically
+    cookies.signed[:jwt] = {value: token, httponly: true, expires: 2.hour}
+    # Render json (with cookies)
+    render json: user, serializer: LogInSerializer, status: :accepted
   end
 
 end
