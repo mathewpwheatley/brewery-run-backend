@@ -9,13 +9,13 @@ class BreweriesController < ApplicationController
   end
 
   def show
-    render json: {user: BrewerySerializer.new(@brewery)}, status: :ok
+    render json: @brewery, serializer: BrewerySerializer, status: :ok
   end
 
   def create
     brewery = Brewery.create(brewery_params)
     if brewery.vaild?
-      render json: {brewery: BrewerySerializer.new(brewery)}, status: :created
+      render json: brewery, serializer: BrewerySerializer, status: :created
     else
       render json: {errors: brewery.errors.full_messages}, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class BreweriesController < ApplicationController
   def update
     @brewery.update(brewery_params)
     if @brewery.valid?
-      render json: {brewery: BrewerySerializer.new(@brewery)}, status: :accepted
+      render json: @brewery, serializer: BrewerySerializer, status: :accepted
     else
       render json: {errors: @brewery.errors.full_messages}, status: :unprocessable_entity
     end
