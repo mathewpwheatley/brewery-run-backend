@@ -47,6 +47,14 @@ class User < ApplicationRecord
         self.circuits.count
     end
 
+    def public_circuits
+        self.circuits.where(public: true)
+    end
+
+    def public_circuits_count
+        self.public_circuits.count
+    end
+
     def public_favorite_circuits
         self.favorite_circuits.where(public: true)
     end
