@@ -32,7 +32,7 @@ class BreweriesController < ApplicationController
 
   def destroy
     @brewery.destroy
-    render json: {status: :no_content}
+    render json: status: :no_content
   end
 
   private

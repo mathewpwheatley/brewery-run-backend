@@ -32,7 +32,7 @@ class CircuitsController < ApplicationController
 
   def destroy
     @circuit.destroy
-    render json: {status: :no_content}
+    render json: status: :no_content
   end
 
   private
