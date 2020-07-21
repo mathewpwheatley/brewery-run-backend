@@ -4,8 +4,9 @@ class CircuitsController < ApplicationController
   skip_before_action :authorized
 
   def index
-    circuits = Circuit.all
-    render json: circuits, serializer_each: CircuitSerializer, status: :ok
+    # Only send public circuits in index, this way only a user can see their none-public circuits
+    circuits = Circuit.all_public
+    render json: circuits, serializer_each: CircuitIndexSerializer, status: :ok
   end
 
   def show

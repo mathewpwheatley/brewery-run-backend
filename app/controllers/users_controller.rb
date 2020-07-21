@@ -27,12 +27,12 @@ class UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: users, serializer_each: UserSerializer, status: :ok
+    render json: users, serializer_each: UserIndexSerializer, status: :ok
   end
 
   def show
-    # user = User.find(params[:id])
-    # render json: current_user, serializer: UserSerializer, status: :ok
+    user = User.find(params[:id])
+    render json: user, serializer: UserSerializer, status: :ok
   end
 
   def create
@@ -59,10 +59,6 @@ class UsersController < ApplicationController
   end
 
   private
-  # I dont think this is required since the login assigns a user
-  def set_user
-    @user = User.find(params[:id])
-  end
 
   # Only allow a list of trusted parameters through.
   def user_params

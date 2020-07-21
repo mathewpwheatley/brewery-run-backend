@@ -30,4 +30,8 @@ class Circuit < ApplicationRecord
         end
     end
 
+    def self.all_public
+        self.all.where(public: true)
+    end
+
 end

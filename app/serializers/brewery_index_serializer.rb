@@ -1,4 +1,4 @@
-class BrewerySerializer < ActiveModel::Serializer
+class BreweryIndexSerializer < ActiveModel::Serializer
   attributes(
     :id,
     :name,
