@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   # I dont think this is required since the login assigns a user
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy, :log_out]
   
   # authorized comes from ApplicationController 
-  skip_before_action :authorized#, only: [:log_in, :create]
+  skip_before_action :authorized, only: [:index, :log_in, :create]
  
   def log_in
     user = User.find_by_email(user_login_params[:email])
@@ -21,6 +21,8 @@ class UsersController < ApplicationController
 
   def log_out
     cookies.signed[:jwt].destroy
+    render status: :no_content
+
   end
 
   def index
@@ -75,7 +77,7 @@ class UsersController < ApplicationController
     # encode token comes from ApplicationController
     token = encode_token({user_id: user.id})
     # Create cookie which is sent with request automatically
-    cookies.signed[:jwt] = {value: token, httponly: true, expires: 2.hour}
+    cookies.signed[:jwt] = {value: token, http_only: true, expires: 2.hour}
     # Render json (with cookies)
     render json: user, serializer: LogInSerializer, status: :accepted
   end
