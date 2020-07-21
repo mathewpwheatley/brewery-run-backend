@@ -1,15 +1,14 @@
 # Seed Counts
 user_count = 25
-brewery_count = 20
-brewery_favorite_count = 10
-brewery_like_count = 25
-brewery_review_count = 15
-circuit_count = 25
-circuit_favorite_count = 10
-circuit_like_count = 50
-circuit_review_count = 15
-follow_count = 50
-notification_count = 15
+brewery_favorite_count = 50
+brewery_like_count = 100
+brewery_review_count = 35
+circuit_count = 200
+circuit_favorite_count = 100
+circuit_like_count = 200
+circuit_review_count = 65
+follow_count = 100
+notification_count = 50
 breweries_circuit_count = 5 # breweries per circuit
 
 
