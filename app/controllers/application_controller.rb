@@ -35,9 +35,6 @@ class ApplicationController < ActionController::API
   end
   
   def authorized
-    puts "Inside authorized"
-    puts cookies.signed[:jwt]
-    puts logged_in?
     render json: {errors: ['Please log in']}, status: :unauthorized unless logged_in?
   end
 end

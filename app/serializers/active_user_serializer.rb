@@ -1,0 +1,26 @@
+class ActiveUserSerializer < ActiveModel::Serializer
+  attributes(
+    :id,
+    :email,
+    :about,
+    :full_name,
+    :first_name,
+    :middle_name,
+    :last_name,
+    :full_address,
+    :street,
+    :city,
+    :state,
+    :postal_code,
+    :country,
+    :favorite_breweries_count,
+    :brewery_reviews_count,
+    :circuits_count,
+    :public_circuits_count,
+    :public_circuits_avg_rating,
+    :favorite_circuits_count,
+    :circuit_reviews_count,
+    :followers_count,
+    :following_count,
+  )
+end

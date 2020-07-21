@@ -29,8 +29,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
-    render json: user, serializer: UserSerializer, status: :ok
+    user = active_user
+    if user.id == params[:id].to_i
+      render json: user, serializer: ActiveUserSerializer, status: :ok
+    else
+      user = User.find(params[:id])
+      render json: user, serializer: UserSerializer, status: :ok
+    end
   end
 
   def create

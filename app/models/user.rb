@@ -27,20 +27,24 @@ class User < ApplicationRecord
     has_secure_password
 
     # Instance Methods
-    def name
-        "#{self.first_name} #{self.last_name}".split.join(" ")
-    end
-
     def full_name
         "#{self.first_name} #{self.middle_name} #{self.last_name}".split.join(" ")
     end
 
     def full_address
-        "#{self.street}, #{self.city}, #{self.state} #{self.postal_code}, #{self.country}"
+        "#{self.street}, #{self.city}, #{self.state} #{self.postal_code}, #{self.country}".split.join(" ")
+    end
+
+    def city_address
+        "#{self.city}, #{self.state}, #{self.country}".split.join(" ")
     end
 
     def favorite_breweries_count
         self.favorite_breweries.count
+    end
+
+    def brewery_reviews_count
+        self.brewery_reviews.count
     end
 
     def circuits_count
@@ -55,6 +59,14 @@ class User < ApplicationRecord
         self.public_circuits.count
     end
 
+    def public_circuits_avg_rating
+        self.public_circuits.reduce(0){|sum, circuit| sum + circuit.rating}.to_f/self.public_circuits_count
+    end
+
+    def favorite_circuits_count
+        self.favorite_circuits.count
+    end
+
     def public_favorite_circuits
         self.favorite_circuits.where(public: true)
     end
@@ -63,8 +75,16 @@ class User < ApplicationRecord
         self.public_favorite_circuits.count
     end
 
+    def circuit_reviews_count
+        self.circuit_reviews.count
+    end
+
     def followers_count
         self.followers.count
+    end
+
+    def following_count
+        self.followees.count
     end
 
     def public_followees_circuits_count
