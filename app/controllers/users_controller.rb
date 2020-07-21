@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-  # I dont think this is required since the login assigns a user
-  # before_action :set_user, only: [:show, :update, :destroy, :log_out]
-  
+
   # authorized comes from ApplicationController 
-  skip_before_action :authorized#, only: [:index, :log_in, :create]
+  skip_before_action :authorized, only: [:index, :log_in, :create]
  
   def log_in
     user = User.find_by_email(user_login_params[:email])
@@ -20,8 +18,8 @@ class UsersController < ApplicationController
   end
 
   def log_out
-    cookies.signed[:jwt].destroy
-    render status: :no_content
+    cookies.delete(:jwt)
+    render json: {message: ["JWT HTTP Only Cookie Deleted, User Logged Out"]}, status: :no_content
 
   end
 

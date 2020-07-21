@@ -1,7 +1,7 @@
 class CircuitsController < ApplicationController
   before_action :set_circuit, only: [:show, :update, :destroy]
-  # Skip user authorization for now
-  skip_before_action :authorized
+  
+  skip_before_action :authorized, only: [:index, :show]
 
   def index
     # Only send public circuits in index, this way only a user can see their none-public circuits

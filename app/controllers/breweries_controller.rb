@@ -1,7 +1,6 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :update, :destroy]
-  # Skip user authorization for now
-  skip_before_action :authorized
+  skip_before_action :authorized, only: [:index, :show]
 
   def index
     breweries = Brewery.all
