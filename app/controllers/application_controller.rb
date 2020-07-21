@@ -9,23 +9,21 @@ class ApplicationController < ActionController::API
     JWT.encode(payload, 'my_s3cr3t')
   end
   
-  def auth_header
-    request.headers['Authorization']
+  def jwt_cookie
+    cookies.signed[:jwt]
   end
   
   def decoded_token
-    if auth_header
-      # Split since the token is after Bearer
-      token = auth_header.split(' ')[1]
+    if jwt_cookie
       begin
-        JWT.decode(token, 'my_s3cr3t', true, algorithm: 'HS256')
+        JWT.decode(jwt_cookie, 'my_s3cr3t', true, algorithm: 'HS256')
       rescue JWT::DecodeError
         nil
       end
     end
   end
   
-  def current_user
+  def active_user
     if decoded_token
       user_id = decoded_token[0]['user_id']
       user = User.find_by(id: user_id)
@@ -33,10 +31,13 @@ class ApplicationController < ActionController::API
   end
   
   def logged_in?
-    !!current_user
+    !!active_user
   end
   
   def authorized
+    puts "Inside authorized"
+    puts cookies.signed[:jwt]
+    puts logged_in?
     render json: {errors: ['Please log in']}, status: :unauthorized unless logged_in?
   end
 end

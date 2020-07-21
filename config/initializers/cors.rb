@@ -7,7 +7,8 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    # Need to update this once it is published, this must be set for httponly cookies
+    origins 'http://localhost:3000'
 
     resource '*',
       headers: :any,
