@@ -8,4 +8,6 @@ class CircuitSerializerPublic < ActiveModel::Serializer
     :reviews_count,
     :rating
   )
+
+  has_many(:reviews, serializer: ReviewSerializerIndex)
 end

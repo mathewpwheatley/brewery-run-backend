@@ -5,7 +5,7 @@ class BreweryReview < ApplicationRecord
 
     # ActiveRecord Validatons (See db schema for additional validators)
     validates(:title, presence: true)
-    validates(:title, length: { in: 10..50 }
+    validates(:title, length: { in: 10..50 })
     validates(:content, presence: true)
     validates(:content, length: { in: 50..500 })
     validates(:rating, presence: true)

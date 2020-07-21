@@ -9,5 +9,5 @@ class UserSerializerPublic < ActiveModel::Serializer
     :followers_count,
     :public_circuits
   )
-  has_many :public_circuits, serializer: CircuitSerializerIndex
+  has_many(:public_circuits, serializer: CircuitSerializerIndex)
 end
