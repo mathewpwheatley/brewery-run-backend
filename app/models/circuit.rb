@@ -24,7 +24,7 @@ class Circuit < ApplicationRecord
 
     def rating
         if reviews_count > 0 
-            self.circuit_reviews.reduce(0){|sum, review| sum + review.rating}.to_f/self.reviews_count
+            (self.circuit_reviews.reduce(0){|sum, review| sum + review.rating}.to_f/self.reviews_count).round(2)
         else
             "N/A"
         end

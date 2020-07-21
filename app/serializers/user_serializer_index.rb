@@ -1,4 +1,4 @@
-class UserIndexSerializer < ActiveModel::Serializer
+class UserSerializerIndex < ActiveModel::Serializer
   attributes(
     :id,
     :full_name,

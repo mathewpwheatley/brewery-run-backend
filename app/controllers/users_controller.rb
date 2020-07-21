@@ -25,16 +25,16 @@ class UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: users, serializer_each: UserIndexSerializer, status: :ok
+    render json: users, each_serializer: UserSerializerIndex, status: :ok
   end
 
   def show
     user = active_user
     if user.id == params[:id].to_i
-      render json: user, serializer: ActiveUserSerializer, status: :ok
+      render json: user, serializer: UserSerializerActive, status: :ok
     else
       user = User.find(params[:id])
-      render json: user, serializer: UserSerializer, status: :ok
+      render json: user, serializer: UserSerializerPublic, status: :ok
     end
   end
 
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     if @user.valid?
-      render json: @user, serializer: UserSerializer, status: :accepted
+      render json: @user, serializer: User::UserSerializerActive, status: :accepted
     else
       render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
     end

@@ -6,7 +6,7 @@ class CircuitsController < ApplicationController
   def index
     # Only send public circuits in index, this way only a user can see their none-public circuits
     circuits = Circuit.all_public
-    render json: circuits, serializer_each: CircuitIndexSerializer, status: :ok
+    render json: circuits, each_serializer: CircuitIndexSerializer, status: :ok
   end
 
   def show
