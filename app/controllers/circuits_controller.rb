@@ -6,35 +6,35 @@ class CircuitsController < ApplicationController
   def index
     # Only send public circuits in index, this way only a user can see their none-public circuits
     circuits = Circuit.all_public
-    render json: circuits, each_serializer: CircuitIndexSerializer, status: :ok
+    render json: circuits, each_serializer: CircuitSerializerIndex, status: :ok
   end
 
   def show
-    render json: @circuit, serializer: CircuitSerializer, status: :ok
+    render json: @circuit, serializer: CircuitSerializerPublic, status: :ok
   end
 
-  def create
-    circuit = Circuit.create(circuit_params)
-    if circuit.vaild?
-      render json: circuit, serializer: CircuitSerializer, status: :created
-    else
-      render json: {errors: circuit.errors.full_messages}, status: :unprocessable_entity
-    end
-  end
+  # def create
+  #   circuit = Circuit.create(circuit_params)
+  #   if circuit.vaild?
+  #     render json: circuit, serializer: CircuitSerializer, status: :created
+  #   else
+  #     render json: {errors: circuit.errors.full_messages}, status: :unprocessable_entity
+  #   end
+  # end
 
-  def update
-    @circuit.update(circuit_params)
-    if @circuit.valid?
-      render json: @circuit, serializer: CircuitSerializer, status: :accepted
-    else
-      render json: {errors: @circuit.errors.full_messages}, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   @circuit.update(circuit_params)
+  #   if @circuit.valid?
+  #     render json: @circuit, serializer: CircuitSerializer, status: :accepted
+  #   else
+  #     render json: {errors: @circuit.errors.full_messages}, status: :unprocessable_entity
+  #   end
+  # end
 
-  def destroy
-    @circuit.destroy
-    render status: :no_content
-  end
+  # def destroy
+  #   @circuit.destroy
+  #   render status: :no_content
+  # end
 
   private
   def set_circuit

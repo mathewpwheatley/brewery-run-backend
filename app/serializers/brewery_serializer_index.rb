@@ -1,9 +1,9 @@
-class CircuitSerializer < ActiveModel::Serializer
+class BrewerySerializerIndex < ActiveModel::Serializer
   attributes(
     :id,
-    :title,
-    :description,
-    :public,
+    :name,
+    :brewery_type,
+    :tag_list,
     :favorites_count,
     :likes_count,
     :reviews_count,

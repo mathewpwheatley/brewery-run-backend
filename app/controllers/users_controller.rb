@@ -46,20 +46,20 @@ class UsersController < ApplicationController
       render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
     end
   end
+  
+  # def update
+  #   @user.update(user_params)
+  #   if @user.valid?
+  #     render json: @user, serializer: User::UserSerializerActive, status: :accepted
+  #   else
+  #     render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
+  #   end
+  # end
 
-  def update
-    @user.update(user_params)
-    if @user.valid?
-      render json: @user, serializer: User::UserSerializerActive, status: :accepted
-    else
-      render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @user.destroy
-    render status: :no_content
-  end
+  # def destroy
+  #   @user.destroy
+  #   render status: :no_content
+  # end
 
   private
 

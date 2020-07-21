@@ -1,4 +1,4 @@
-class CircuitIndexSerializer < ActiveModel::Serializer
+class CircuitSerializerIndex < ActiveModel::Serializer
   attributes(
     :id,
     :title,

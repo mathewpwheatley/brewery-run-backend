@@ -6,6 +6,8 @@ class UserSerializerPublic < ActiveModel::Serializer
     :city_address,
     :public_circuits_count,
     :public_circuits_avg_rating,
-    :followers_count
+    :followers_count,
+    :public_circuits
   )
+  has_many :public_circuits, serializer: CircuitSerializer
 end

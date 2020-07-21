@@ -4,35 +4,35 @@ class BreweriesController < ApplicationController
 
   def index
     breweries = Brewery.all
-    render json: breweries, each_serializer: BreweryIndexSerializer, status: :ok
+    render json: breweries, each_serializer: BrewerySerializerIndex, status: :ok
   end
 
   def show
-    render json: @brewery, serializer: BrewerySerializer, status: :ok
+    render json: @brewery, serializer: BrewerySerializerPublic, status: :ok
   end
 
-  def create
-    brewery = Brewery.create(brewery_params)
-    if brewery.vaild?
-      render json: brewery, serializer: BrewerySerializer, status: :created
-    else
-      render json: {errors: brewery.errors.full_messages}, status: :unprocessable_entity
-    end
-  end
+  # def create
+  #   brewery = Brewery.create(brewery_params)
+  #   if brewery.vaild?
+  #     render json: brewery, serializer: BrewerySerializer, status: :created
+  #   else
+  #     render json: {errors: brewery.errors.full_messages}, status: :unprocessable_entity
+  #   end
+  # end
 
-  def update
-    @brewery.update(brewery_params)
-    if @brewery.valid?
-      render json: @brewery, serializer: BrewerySerializer, status: :accepted
-    else
-      render json: {errors: @brewery.errors.full_messages}, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   @brewery.update(brewery_params)
+  #   if @brewery.valid?
+  #     render json: @brewery, serializer: BrewerySerializer, status: :accepted
+  #   else
+  #     render json: {errors: @brewery.errors.full_messages}, status: :unprocessable_entity
+  #   end
+  # end
 
-  def destroy
-    @brewery.destroy
-    render status: :no_content
-  end
+  # def destroy
+  #   @brewery.destroy
+  #   render status: :no_content
+  # end
 
   private
   def set_brewery
