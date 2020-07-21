@@ -3,7 +3,6 @@ class CircuitSerializerPublic < ActiveModel::Serializer
     :id,
     :title,
     :description,
-    :public,
     :favorites_count,
     :likes_count,
     :reviews_count,

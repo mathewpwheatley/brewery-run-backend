@@ -1,4 +1,4 @@
-class LogInSerializer < ActiveModel::Serializer
+class UserSerializerLogIn < ActiveModel::Serializer
   attributes(
     :id,
     :full_name,

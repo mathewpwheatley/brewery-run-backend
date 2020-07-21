@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
     end
   end
-  
+
   # def update
   #   @user.update(user_params)
   #   if @user.valid?
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     # Create cookie which is sent with request automatically
     cookies.signed[:jwt] = {value: token, http_only: true, expires: 2.hour.from_now}
     # Render json (with cookies)
-    render json: user, serializer: LogInSerializer, status: :accepted
+    render json: user, serializer: UserSerializerLogIn, status: :accepted
   end
 
 end
