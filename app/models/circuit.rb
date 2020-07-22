@@ -11,8 +11,22 @@ class Circuit < ApplicationRecord
     has_many(:reviews, foreign_key: "circuit_id", class_name: "CircuitReview")
 
     # ActiveRecord Validatons (See db schema for additional validators)
+    validates(:title, presence: true)
+    validates(:title, length: { in: 10..50 })
+    validates(:description, presence: true)
+    validates(:description, length: { in: 25..200 })
+    validates(:user_id, presence: true)
+    validates(:user_id, numericality: { only_integer: true })
 
     # Instance Methods
+    def author_name
+        self.user.full_name
+    end
+
+    def breweries_count
+        self.breweries.count
+    end
+
     def favorites_count
         self.favorites.count
     end

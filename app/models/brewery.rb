@@ -11,6 +11,7 @@ class Brewery < ApplicationRecord
     serialize(:tag_list)
 
     # ActiveRecord Validatons (See db schema for additional validators)
+    validates(:name, presence: true)
 
     # Instance Methods
     def full_address
@@ -39,6 +40,14 @@ class Brewery < ApplicationRecord
         else
             "N/A"
         end
+    end
+
+    def public_circuits
+        self.circuits.where(public: true)
+    end
+
+    def public_circuits_count
+        self.public_circuits.count
     end
 
 end

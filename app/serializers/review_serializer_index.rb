@@ -3,7 +3,6 @@ class ReviewSerializerIndex < ActiveModel::Serializer
     :id,
     :title,
     :author_name,
-    :rating,
-    :update_at
+    :rating
   )
 end

@@ -4,6 +4,7 @@ class BrewerySerializerIndex < ActiveModel::Serializer
     :name,
     :brewery_type,
     :tag_list,
+    :public_circuits_count,
     :favorites_count,
     :likes_count,
     :reviews_count,
