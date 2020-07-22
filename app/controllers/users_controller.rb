@@ -85,7 +85,7 @@ class UsersController < ApplicationController
     user = active_user
     # Check if user is requesting information for themselves
     if user.id == params[:id].to_i
-      # user.destroy
+      user.destroy
       render json: {messages: ['User account has been delete']}, status: :ok
     else
       render json: {messages: ["User can only edit their own account"]}, status: :unauthorized
