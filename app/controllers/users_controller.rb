@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   # authorized comes from ApplicationController 
   skip_before_action :authorized, only: [:index, :create, :log_in, :auto_log_in]
  

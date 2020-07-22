@@ -20,4 +20,16 @@ class CircuitReview < ApplicationRecord
         self.user.full_name
     end
 
+    def author_id
+        self.user.id
+    end
+
+    def circuit_title
+        self.circuit.title
+    end
+
+    def circuit_id
+        self.circuit.id
+    end
+
 end

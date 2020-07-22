@@ -19,5 +19,17 @@ class BreweryReview < ApplicationRecord
     def author_name
         self.user.full_name
     end
+
+    def author_id
+        self.user.id
+    end
+
+    def brewery_name
+        self.circuit.name
+    end
+
+    def brewery_id
+        self.brewery.id
+    end
     
 end

@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   resources :breweries
   resources :brewery_favorites, only: [:create, :delete]
   resources :brewery_likes, only: [:create, :delete]
-  resources :brewery_reviews
+  resources :brewery_reviews, except: [:index]
 
   resources :circuits
   resources :circuit_favorites, only: [:create, :delete]
   resources :circuit_likes, only: [:create, :delete]
-  resources :circuit_reviews
+  resources :circuit_reviews, except: [:index]
 
   resources :follows, only: [:create, :delete]
 
