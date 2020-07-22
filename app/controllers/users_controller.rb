@@ -19,15 +19,17 @@ class UsersController < ApplicationController
 
   def auto_log_in
     if logged_in?
+      puts "log_in"
       log_in_response(active_user)
     else
-      render json: {message: ["User not found therefore auto log-in was not completed"]}, status: :no_content
+      puts "Else"
+      render json: {messages: ["User not found therefore auto log-in was not completed"]}, status: :ok
     end
   end
 
   def log_out
     cookies.delete(:jwt)
-    render json: {message: ["JWT HTTP only cookie deleted, user has been logged out"]}, status: :no_content
+    render json: {messages: ["JWT HTTP only cookie deleted, user has been logged out"]}, status: :ok
 
   end
 
@@ -38,6 +40,7 @@ class UsersController < ApplicationController
 
   def show
     user = active_user
+    # Check if user is requesting information for themselves
     if user.id == params[:id].to_i
       render json: user, serializer: UserSerializerActive, status: :ok
     else
