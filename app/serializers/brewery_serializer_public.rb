@@ -7,11 +7,11 @@ class BrewerySerializerPublic < ActiveModel::Serializer
     :full_address,
     :phone,
     :website_url,
-    :public_circuits_count,
-    :favorites_count,
+    :rating,
     :likes_count,
+    :favorites_count,
     :reviews_count,
-    :rating
+    :public_circuits_count
   )
   has_many(:public_circuits, serializer: CircuitSerializerIndex)
   has_many(:reviews, serializer: ReviewSerializerIndex)

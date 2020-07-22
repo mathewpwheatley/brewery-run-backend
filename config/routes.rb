@@ -11,9 +11,9 @@ Rails.application.routes.draw do
 
   resources :follows, only: [:create, :delete]
 
-  resources :notifications, except: [:new, :edit]
+  resources :notifications, except: [:new, :edit, :update]
 
-  resources :users, except: [:new, :edit]
+  resources :users, except: [:new]
   post '/log-in', to: 'users#log_in'
   post '/auto_log_in', to: 'users#auto_log_in'
   delete '/log-out', to: 'users#log_out'

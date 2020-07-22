@@ -19,10 +19,8 @@ class UsersController < ApplicationController
 
   def auto_log_in
     if logged_in?
-      puts "log_in"
       log_in_response(active_user)
     else
-      puts "Else"
       render json: {messages: ["User not found therefore auto log-in was not completed"]}, status: :ok
     end
   end
@@ -58,14 +56,24 @@ class UsersController < ApplicationController
     end
   end
 
-  # def update
-  #   @user.update(user_params)
-  #   if @user.valid?
-  #     render json: @user, serializer: User::UserSerializerActive, status: :accepted
-  #   else
-  #     render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
-  #   end
-  # end
+  def edit
+    user = active_user
+    # Check if user is requesting information for themselves
+    if user.id == params[:id].to_i
+      render json: user, serializer: UserSerializerEdit, status: :ok
+    else
+      render json: {messages: ["User can only edit their own account"]}, status: :unauthorized
+    end
+  end
+
+  def update
+    @user.update(user_params)
+    if @user.valid?
+      render json: @user, serializer: User::UserSerializerActive, status: :accepted
+    else
+      render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
 
   # def destroy
   #   @user.destroy

@@ -3,11 +3,10 @@ class BrewerySerializerIndex < ActiveModel::Serializer
     :id,
     :name,
     :brewery_type,
-    :tag_list,
-    :public_circuits_count,
-    :favorites_count,
+    :rating,
     :likes_count,
+    :favorites_count,
     :reviews_count,
-    :rating
+    :public_circuits_count
   )
 end

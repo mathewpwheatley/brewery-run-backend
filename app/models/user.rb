@@ -69,6 +69,10 @@ class User < ApplicationRecord
         end
     end
 
+    def private_circuits
+        self.circuits.where(public: false)
+    end
+
     def favorite_circuits_count
         self.favorite_circuits.count
     end
@@ -93,12 +97,12 @@ class User < ApplicationRecord
         self.followees.count
     end
 
-    def public_followees_circuits_count
-        self.public_followees_circuits.count
-    end
-
     def public_followees_circuits
         self.followees.map{|followee| followee.circuits.where(public: true)}.flatten
+    end
+
+    def public_followees_circuits_count
+        self.public_followees_circuits.count
     end
 
     def notifications_count
