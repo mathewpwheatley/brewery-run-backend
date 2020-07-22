@@ -67,18 +67,30 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    if @user.valid?
-      render json: @user, serializer: User::UserSerializerActive, status: :accepted
+    user = active_user
+    # Check if user is requesting information for themselves
+    if user.id == params[:id].to_i
+      user.update(user_params)
+      if user.valid?
+        render json: user, serializer: UserSerializerActive, status: :accepted
+      else
+        render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
+      end
     else
-      render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
+      render json: {messages: ["User can only edit their own account"]}, status: :unauthorized
     end
   end
 
-  # def destroy
-  #   @user.destroy
-  #   render status: :no_content
-  # end
+  def destroy
+    user = active_user
+    # Check if user is requesting information for themselves
+    if user.id == params[:id].to_i
+      # user.destroy
+      render json: {messages: ['User account has been delete']}, status: :ok
+    else
+      render json: {messages: ["User can only edit their own account"]}, status: :unauthorized
+    end
+  end
 
   private
 

@@ -1,4 +1,4 @@
-class UserSerializerActive < ActiveModel::Serializer
+class UserSerializerEdit < ActiveModel::Serializer
   attributes(
     :id,
     :email,
@@ -7,7 +7,6 @@ class UserSerializerActive < ActiveModel::Serializer
     :first_name,
     :middle_name,
     :last_name,
-    :full_address,
     :street,
     :city,
     :state,
