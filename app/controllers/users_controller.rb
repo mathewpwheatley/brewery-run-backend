@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   # authorized comes from ApplicationController 
-  skip_before_action :authorized, only: [:index, :log_in, :create]
+  skip_before_action :authorized, only: [:index, :create, :log_in, :auto_log_in]
  
   def log_in
     user = User.find_by_email(user_login_params[:email])
@@ -17,9 +17,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def auto_log_in
+    if logged_in?
+      log_in_response(active_user)
+    else
+      render json: {message: ["User not found therefore auto log-in was not completed"]}, status: :no_content
+    end
+  end
+
   def log_out
     cookies.delete(:jwt)
-    render json: {message: ["JWT HTTP Only Cookie Deleted, User Logged Out"]}, status: :no_content
+    render json: {message: ["JWT HTTP only cookie deleted, user has been logged out"]}, status: :no_content
 
   end
 
