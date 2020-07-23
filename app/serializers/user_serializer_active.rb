@@ -20,8 +20,8 @@ class UserSerializerActive < ActiveModel::Serializer
   has_many(:favorite_circuits, serializer: CircuitSerializerIndex)
   has_many(:public_followees_circuits, serializer: CircuitSerializerIndex)
   has_many(:favorite_breweries, serializer: BrewerySerializerIndex)
-  has_many(:circuit_reviews, serializer: ReviewSerializerIndex)
-  has_many(:brewery_reviews, serializer: ReviewSerializerIndex)
+  has_many(:circuit_reviews, serializer: ReviewSerializer)
+  has_many(:brewery_reviews, serializer: ReviewSerializer)
   
 
 end
