@@ -35,6 +35,7 @@ class ApplicationController < ActionController::API
   end
   
   def authorized
+    # Right now this only check that you are logged in therefore another user could delete information from another user
     render json: {errors: ['Please log in']}, status: :unauthorized unless logged_in?
   end
 end

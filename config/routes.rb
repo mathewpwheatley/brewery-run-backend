@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :follows, only: [:create, :delete]
 
-  resources :notifications, except: [:update]
+  resources :notifications
 
   resources :users
   post '/log-in', to: 'users#log_in'
