@@ -1,7 +1,9 @@
 class UserSerializerLogIn < ActiveModel::Serializer
   attributes(
     :id,
-    :full_name
+    :title,
+    :content,
+    :link,
+    :read
   )
-  has_many(:notifications, serializer: NotificationSerializer)
 end

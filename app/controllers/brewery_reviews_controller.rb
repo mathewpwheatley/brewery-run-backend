@@ -4,7 +4,7 @@ class BreweryReviewsController < ApplicationController
 
   def show
     review = BreweryReview.find(params[:id])
-    render json: review, serializer: BreweryReviewSerializer, status: :ok
+    render json: review, serializer: ReviewSerializer, status: :ok
   end
   
   private

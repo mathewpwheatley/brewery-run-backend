@@ -24,11 +24,11 @@ class CircuitReview < ApplicationRecord
         self.user.id
     end
 
-    def circuit_title
+    def subject_name
         self.circuit.title
     end
 
-    def circuit_id
+    def subject_id
         self.circuit.id
     end
 

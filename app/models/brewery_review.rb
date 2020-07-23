@@ -24,11 +24,11 @@ class BreweryReview < ApplicationRecord
         self.user.id
     end
 
-    def brewery_name
-        self.circuit.name
+    def subject_name
+        self.brewery.name
     end
 
-    def brewery_id
+    def subject_id
         self.brewery.id
     end
     

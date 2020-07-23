@@ -14,5 +14,5 @@ class BrewerySerializerPublic < ActiveModel::Serializer
     :public_circuits_count
   )
   has_many(:public_circuits, serializer: CircuitSerializerIndex)
-  has_many(:reviews, serializer: ReviewSerializerIndex)
+  has_many(:reviews, serializer: ReviewSerializer)
 end

@@ -11,5 +11,5 @@ class CircuitSerializerPublic < ActiveModel::Serializer
     :rating
   )
   has_many(:breweries, serializer: BrewerySerializerIndex)
-  has_many(:reviews, serializer: ReviewSerializerIndex)
+  has_many(:reviews, serializer: ReviewSerializer)
 end

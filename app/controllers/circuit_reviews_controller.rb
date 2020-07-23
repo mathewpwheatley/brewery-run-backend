@@ -4,7 +4,7 @@ class CircuitReviewsController < ApplicationController
 
   def show
     circuit_review = CircuitReview.find(params[:id])
-    render json: circuit_review, serializer: CircuitReviewSerializer, status: :ok
+    render json: circuit_review, serializer: ReviewSerializer, status: :ok
   end
   
   private
