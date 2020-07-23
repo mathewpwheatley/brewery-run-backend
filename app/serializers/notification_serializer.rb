@@ -1,4 +1,4 @@
-class UserSerializerLogIn < ActiveModel::Serializer
+class NotificationSerializer < ActiveModel::Serializer
   attributes(
     :id,
     :title,
