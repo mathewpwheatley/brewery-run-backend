@@ -49,6 +49,9 @@ class UsersController < ApplicationController
   def create
     user = User.create(user_params)
     if user.valid?
+      # Valid new user, create welcome notification
+      Notification.create(title: "Welcome #{user.first_name}!", content: "Thank you for joining Beer Run, discover new circuits here!", link: "/circuits", user_id: user.id)
+      # Log-in new user
       log_in_response(user)
     else
       render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
