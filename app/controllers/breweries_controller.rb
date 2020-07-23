@@ -14,8 +14,9 @@ class BreweriesController < ApplicationController
 
   private
   # Only allow a list of trusted parameters through.
-  def brewery_params
-    params.require(:brewery).permit(:name, :brewery_type, :street, :city, :state, :postal_code, :country, :longitude, :latitude, :phone, :website_url, :tag_list)
-  end
+  # Below function is currently unused as breweries are pulled from and API upon seeding
+  # def brewery_params
+  #   params.require(:brewery).permit(:name, :brewery_type, :street, :city, :state, :postal_code, :country, :longitude, :latitude, :phone, :website_url, :tag_list)
+  # end
 
 end

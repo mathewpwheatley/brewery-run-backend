@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :breweries
+  resources :breweries, only: [:index, :show]
   resources :brewery_favorites, only: [:create, :delete]
   resources :brewery_likes, only: [:create, :delete]
   resources :brewery_reviews, except: [:index]
