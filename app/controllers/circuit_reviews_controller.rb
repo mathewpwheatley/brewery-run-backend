@@ -45,7 +45,7 @@ class CircuitReviewsController < ApplicationController
     title = "You got a new circuit review!"
     content = "#{user_name} just wrote a review about circuit #{circuit.title} with a rating of #{circuit_review.rating}. "
     link = "/circuits/#{circuit.id}"
-    Notification.create(title: title, content: message, link: link, user_id: circuit.user.id)
+    Notification.create(title: title, content: content, link: link, user_id: circuit.user.id)
   end
 
 end
