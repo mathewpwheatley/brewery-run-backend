@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.valid?
       # Valid new user, create welcome notification
-      Notification.create(title: "Welcome #{user.first_name}!", content: "Thank you for joining Beer Run, discover new circuits here!", link: "/circuits", user_id: user.id)
+      new_user_notification(user)
       # Log-in new user
       log_in_response(user)
     else
@@ -113,6 +113,13 @@ class UsersController < ApplicationController
     cookies.signed[:jwt] = {value: token, http_only: true, expires: 2.hour.from_now}
     # Render json (with cookies)
     render json: user, serializer: UserSerializerLogIn, status: :accepted
+  end
+
+  def new_user_notification(user)
+    title = "Welcome #{user.first_name}!"
+    content = "Thank you for joining Beer Run! Start discoverering new circuits here."
+    link = "/circuits"
+    Notification.create(title: title, content: content, link: link, user_id: user.id)
   end
 
 end
