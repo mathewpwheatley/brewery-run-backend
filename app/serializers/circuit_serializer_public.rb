@@ -5,8 +5,10 @@ class CircuitSerializerPublic < ActiveModel::Serializer
     :author_name,
     :description,
     :breweries_count,
-    :favorites_count,
     :likes_count,
+    :active_user_like_id,
+    :favorites_count,
+    :active_user_favorite_id,
     :reviews_count,
     :rating
   )

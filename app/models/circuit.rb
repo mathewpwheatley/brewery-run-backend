@@ -27,8 +27,26 @@ class Circuit < ApplicationRecord
         self.favorites.count
     end
 
+    def active_user_favorite_id
+        favorite = CircuitFavorite.find_by(circuit_id: self.id, user_id: User.current.id)
+        if favorite
+            favorite.id
+        else
+            false
+        end
+    end
+
     def likes_count
         self.likes.count
+    end
+
+    def active_user_like_id
+        like = CircuitLike.find_by(circuit_id: self.id, user_id: User.current.id)
+        if like
+            like.id
+        else
+            false
+        end
     end
 
     def reviews_count

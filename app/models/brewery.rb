@@ -26,8 +26,26 @@ class Brewery < ApplicationRecord
         self.favorites.count
     end
 
+    def active_user_favorite_id
+        favorite = BreweryFavorite.find_by(brewery_id: self.id, user_id: User.current.id)
+        if favorite
+            favorite.id
+        else
+            false
+        end
+    end
+
     def likes_count
         self.likes.count
+    end
+
+    def active_user_like_id
+        like = BreweryLike.find_by(brewery_id: self.id, user_id: User.current.id)
+        if like
+            like.id
+        else
+            false
+        end
     end
 
     def reviews_count

@@ -1,6 +1,5 @@
 class FollowsController < ApplicationController
-  # authorized comes from ApplicationController
-  skip_before_action :authorized, only: [:show]
+  # authorized runs before each methd as it is called from ApplicationController
 
   def create
     follow = Follow.create(follow_params)
