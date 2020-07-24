@@ -4,7 +4,7 @@ class CircuitLikesController < ApplicationController
   def create
     circuit_like = CircuitLike.create(circuit_like_params)
     if circuit_like.valid?
-      new_like_notification(like)
+      new_like_notification(circuit_like)
       render json: circuit_like, serializer: LikeSerializer, status: :accepted
     else
       render json: {errors: circuit_like.errors.full_messages}, status: :unprocessable_entity

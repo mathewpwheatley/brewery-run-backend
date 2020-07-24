@@ -4,7 +4,7 @@ class CircuitFavoritesController < ApplicationController
   def create
     circuit_favorite = CircuitFavorite.create(circuit_favorite_params)
     if circuit_favorite.valid?
-      new_favorite_notification(favorite)
+      new_favorite_notification(circuit_favorite)
       render json: circuit_favorite, serializer: FavoriteSerializer, status: :accepted
     else
       render json: {errors: circuit_favorite.errors.full_messages}, status: :unprocessable_entity

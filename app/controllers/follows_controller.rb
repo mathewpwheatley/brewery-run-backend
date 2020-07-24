@@ -27,7 +27,7 @@ class FollowsController < ApplicationController
     user_name = User.find(follow.follower_id).full_name
     title = "Well, isn't someone popular!"
     content = "#{user_name} just started following you."
-    Notification.create(title: title, content: message, user_id: follow.followee.id)
+    Notification.create(title: title, content: content, user_id: follow.followee.id)
   end
 
 end

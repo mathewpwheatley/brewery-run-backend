@@ -1,6 +1,5 @@
 class CircuitsController < ApplicationController
-  before_action :set_circuit, only: [:show, :update, :destroy]
-  
+  # authorized comes from ApplicationController 
   skip_before_action :authorized, only: [:index, :show]
 
   def index
@@ -10,7 +9,12 @@ class CircuitsController < ApplicationController
   end
 
   def show
-    render json: @circuit, serializer: CircuitSerializerPublic, status: :ok
+    circuit = Circuit.find(params[:id])
+    if active_user
+      render json: circuit, serializer: CircuitSerializer, status: :ok
+    else
+      ender json: circuit, serializer: CircuitSerializerPublic, status: :ok
+    end
   end
 
   # def create
@@ -37,10 +41,6 @@ class CircuitsController < ApplicationController
   # end
 
   private
-  def set_circuit
-    @circuit = Circuit.find(params[:id])
-  end
-
   # Only allow a list of trusted parameters through.
   def circuit_params
     params.require(:circuit).permit(:title, :description, :public, :user_id)

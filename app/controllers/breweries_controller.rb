@@ -1,4 +1,5 @@
 class BreweriesController < ApplicationController
+  # authorized comes from ApplicationController 
   skip_before_action :authorized, only: [:index, :show]
 
   def index
@@ -8,7 +9,11 @@ class BreweriesController < ApplicationController
 
   def show
     brewery = Brewery.find(params[:id])
-    render json: brewery, serializer: BrewerySerializerPublic, status: :ok
+    if active_user
+      render json: brewery, serializer: BrewerySerializer, status: :ok
+    else
+      render json: brewery, serializer: BrewerySerializerPublic, status: :ok
+    end
   end
 
 

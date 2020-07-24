@@ -19,6 +19,10 @@ class Circuit < ApplicationRecord
         self.user.full_name
     end
 
+    def author_id
+        self.user.id
+    end
+
     def breweries_count
         self.breweries.count
     end

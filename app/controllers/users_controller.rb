@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # authorized comes from ApplicationController 
-  skip_before_action :authorized, only: [:index, :create, :log_in, :auto_log_in]
+  skip_before_action :authorized, only: [:create, :log_in, :auto_log_in]
  
   def log_in
     user = User.find_by_email(user_login_params[:email])

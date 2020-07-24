@@ -1,4 +1,4 @@
-class BrewerySerializerPublic < ActiveModel::Serializer
+class BrewerySerializer < ActiveModel::Serializer
   attributes(
     :id,
     :name,
@@ -9,7 +9,9 @@ class BrewerySerializerPublic < ActiveModel::Serializer
     :website_url,
     :rating,
     :likes_count,
+    :active_user_like_id,
     :favorites_count,
+    :active_user_favorite_id,
     :reviews_count,
     :public_circuits_count
   )

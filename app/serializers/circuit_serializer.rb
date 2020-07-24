@@ -1,4 +1,4 @@
-class CircuitSerializerPublic < ActiveModel::Serializer
+class CircuitSerializer < ActiveModel::Serializer
   attributes(
     :id,
     :title,
@@ -7,7 +7,9 @@ class CircuitSerializerPublic < ActiveModel::Serializer
     :description,
     :breweries_count,
     :likes_count,
+    :active_user_like_id,
     :favorites_count,
+    :active_user_favorite_id,
     :reviews_count,
     :rating
   )
