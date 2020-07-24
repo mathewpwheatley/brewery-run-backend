@@ -4,7 +4,7 @@ class FollowsController < ApplicationController
   def create
     follow = Follow.create(follow_params)
     if follow.valid?
-      new_follow_notification(follow)
+      follow.new_follow_notification
       render json: follow, serializer: FollowSerializer, status: :accepted
     else
       render json: {errors: follow.errors.full_messages}, status: :unprocessable_entity
@@ -21,13 +21,6 @@ class FollowsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def follow_params
     params.require(:follow).permit(:followee_id, :follower_id)
-  end
-
-  def new_follow_notification(follow)
-    user_name = User.find(follow.follower_id).full_name
-    title = "Well, isn't someone popular!"
-    content = "#{user_name} just started following you."
-    Notification.create(title: title, content: content, user_id: follow.followee.id)
   end
 
 end

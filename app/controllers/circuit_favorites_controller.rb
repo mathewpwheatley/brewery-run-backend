@@ -4,7 +4,7 @@ class CircuitFavoritesController < ApplicationController
   def create
     circuit_favorite = CircuitFavorite.create(circuit_favorite_params)
     if circuit_favorite.valid?
-      new_favorite_notification(circuit_favorite)
+      circuit_favorite.new_favorite_notification
       render json: circuit_favorite, serializer: FavoriteSerializer, status: :accepted
     else
       render json: {errors: circuit_favorite.errors.full_messages}, status: :unprocessable_entity
@@ -21,15 +21,6 @@ class CircuitFavoritesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def circuit_favorite_params
     params.require(:circuit_favorite).permit(:user_id, :circuit_id)
-  end
-
-  def new_favorite_notification(favorite)
-    circuit = Circuit.find(favorite.circuit_id)
-    user_name = User.find(favorite.user_id).full_name
-    title = "Your circuit is my favorite!"
-    content = "#{user_name} just favorited your circuit #{circuit.title}. "
-    link = "/circuits/#{circuit.id}"
-    Notification.create(title: title, content: content, link: link, user_id: circuit.user.id)
   end
 
 end

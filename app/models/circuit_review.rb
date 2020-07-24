@@ -25,4 +25,13 @@ class CircuitReview < ApplicationRecord
         self.circuit.id
     end
 
+    def new_review_notification
+        circuit = Circuit.find(self.circuit_id)
+        user_name = User.find(self.user_id).full_name
+        title = "You got a new circuit review!"
+        content = "#{user_name} just wrote a review on #{circuit.title} with a rating of #{self.rating}. "
+        link = "/circuits/#{circuit.id}"
+        Notification.create(title: title, content: content, link: link, user_id: circuit.user.id)
+    end
+
 end
