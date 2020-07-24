@@ -7,6 +7,7 @@ class UserSerializerPublic < ActiveModel::Serializer
     :public_circuits_count,
     :public_circuits_avg_rating,
     :followers_count,
+    :active_user_follow_id,
     :public_circuits
   )
   has_many(:public_circuits, serializer: CircuitSerializerIndex)

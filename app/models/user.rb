@@ -105,8 +105,27 @@ class User < ApplicationRecord
         self.public_followees_circuits.count
     end
 
+    def active_user_follow_id
+        follow = Follow.find_by(followee_id: self.id, follower_id: User.current.id)
+        if follow
+            follow.id
+        else
+            false
+        end
+    end
+
     def notifications_count
         self.notifications.count
+    end
+
+    # Class Methods
+    # The below two methods were pulled from https://stackoverflow.com/questions/2513383/access-current-user-in-model
+    def self.current
+        Thread.current[:user]
+    end
+
+    def self.current=(user)
+        Thread.current[:user] = user
     end
 
 end

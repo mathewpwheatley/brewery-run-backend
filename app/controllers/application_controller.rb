@@ -3,7 +3,11 @@ class ApplicationController < ActionController::API
   include ::ActionController::Cookies
 
   # Note this applies to all controllers that inherit from ApplicationController
-  before_action :authorized
+  before_action :authorized, :set_active_user
+
+  def set_active_user
+    User.current = active_user
+  end
   
   def encode_token(payload)
     JWT.encode(payload, 'my_s3cr3t')
