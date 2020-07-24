@@ -8,7 +8,7 @@ circuit_favorite_count = 100
 circuit_like_count = 200
 circuit_review_count = 65
 follow_count = 100
-notification_count = 50
+notification_count = 0
 breweries_circuit_count = 5 # breweries per circuit
 
 
