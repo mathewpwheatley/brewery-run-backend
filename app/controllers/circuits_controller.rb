@@ -17,14 +17,14 @@ class CircuitsController < ApplicationController
     end
   end
 
-  # def create
-  #   circuit = Circuit.create(circuit_params)
-  #   if circuit.vaild?
-  #     render json: circuit, serializer: CircuitSerializer, status: :created
-  #   else
-  #     render json: {errors: circuit.errors.full_messages}, status: :unprocessable_entity
-  #   end
-  # end
+  def create
+    circuit = Circuit.create(circuit_params)
+    if circuit.valid?
+      render json: circuit, serializer: CircuitSerializer, status: :created
+    else
+      render json: {errors: circuit.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
 
   # def update
   #   @circuit.update(circuit_params)
