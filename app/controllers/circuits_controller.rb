@@ -36,7 +36,8 @@ class CircuitsController < ApplicationController
   # end
 
   def destroy
-    Circuit.find(params[:id])
+    circuit = Circuit.find(params[:id])
+    circuit.destroy
     render json: {messages: ['Circuit has been delete']}, status: :ok
   end
 
