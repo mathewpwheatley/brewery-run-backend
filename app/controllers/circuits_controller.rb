@@ -35,10 +35,10 @@ class CircuitsController < ApplicationController
   #   end
   # end
 
-  # def destroy
-  #   @circuit.destroy
-  #   render status: :no_content
-  # end
+  def destroy
+    Circuit.find(params[:id])
+    render json: {messages: ['Circuit has been delete']}, status: :ok
+  end
 
   private
   # Only allow a list of trusted parameters through.
