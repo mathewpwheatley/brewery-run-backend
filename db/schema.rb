@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 2020_07_14_200914) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "breweries_circuits", id: false, force: :cascade do |t|
+  create_table "breweries_circuits", force: :cascade do |t|
     t.bigint "brewery_id", null: false
     t.bigint "circuit_id", null: false
-    t.index ["brewery_id", "circuit_id"], name: "index_breweries_circuits_on_brewery_id_and_circuit_id"
-    t.index ["circuit_id", "brewery_id"], name: "index_breweries_circuits_on_circuit_id_and_brewery_id"
+    t.index ["brewery_id"], name: "index_breweries_circuits_on_brewery_id"
+    t.index ["circuit_id"], name: "index_breweries_circuits_on_circuit_id"
   end
 
   create_table "brewery_favorites", force: :cascade do |t|
@@ -138,6 +138,8 @@ ActiveRecord::Schema.define(version: 2020_07_14_200914) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "breweries_circuits", "breweries", on_delete: :cascade
+  add_foreign_key "breweries_circuits", "circuits", on_delete: :cascade
   add_foreign_key "brewery_favorites", "breweries", on_delete: :cascade
   add_foreign_key "brewery_favorites", "users", on_delete: :cascade
   add_foreign_key "brewery_likes", "breweries", on_delete: :cascade

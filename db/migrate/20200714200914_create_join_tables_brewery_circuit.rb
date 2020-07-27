@@ -1,8 +1,8 @@
 class CreateJoinTablesBreweryCircuit < ActiveRecord::Migration[6.0]
   def change
-    create_join_table :breweries, :circuits do |t|
-      t.index [:brewery_id, :circuit_id]
-      t.index [:circuit_id, :brewery_id]
+    create_table :breweries_circuits do |t|
+      t.belongs_to :brewery, null: false, index: true, foreign_key: {on_delete: :cascade}
+      t.belongs_to :circuit, null: false, index: true, foreign_key: {on_delete: :cascade}
     end
   end
 end
