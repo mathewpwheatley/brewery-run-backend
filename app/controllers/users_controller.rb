@@ -88,6 +88,7 @@ class UsersController < ApplicationController
     # Check if user is requesting information for themselves
     if user.id == params[:id].to_i
       user.destroy
+      cookies.delete(:jwt) # This logs the user out on the frontend
       render json: {messages: ['User account has been delete']}, status: :ok
     else
       render json: {messages: ["User can only edit their own account"]}, status: :unauthorized
