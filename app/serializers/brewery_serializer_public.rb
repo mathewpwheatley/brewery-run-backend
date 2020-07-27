@@ -5,6 +5,8 @@ class BrewerySerializerPublic < ActiveModel::Serializer
     :brewery_type,
     :tag_list,
     :full_address,
+    :longitude,
+    :latitude,
     :phone,
     :website_url,
     :rating,
