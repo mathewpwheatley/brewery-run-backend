@@ -13,7 +13,7 @@ class CircuitsController < ApplicationController
     if active_user
       render json: circuit, serializer: CircuitSerializer, status: :ok
     else
-      ender json: circuit, serializer: CircuitSerializerPublic, status: :ok
+      render json: circuit, serializer: CircuitSerializerPublic, status: :ok
     end
   end
 
