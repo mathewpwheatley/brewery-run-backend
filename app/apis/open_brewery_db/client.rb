@@ -1,4 +1,4 @@
-# Required gems for Dog API request in db/seed.rb 
+# Required gems for API request in db/seed.rb 
 require 'net/http'
 require 'open-uri'
 require 'json'

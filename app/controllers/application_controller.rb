@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
   end
   
   def encode_token(payload)
-    secret = Rails.application.credentials[Rails.env.to_sym][:jwt_secret]
+    secret = Rails.application.credentials[:jwt_secret]
     JWT.encode(payload, secret)
   end
   
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::API
   def decoded_token
     if jwt_cookie
       begin
-        secret = Rails.application.credentials[Rails.env.to_sym][:jwt_secret]
+        secret = Rails.application.credentials[:jwt_secret]
         JWT.decode(jwt_cookie, secret, true, algorithm: 'HS256')
       rescue JWT::DecodeError
         nil
