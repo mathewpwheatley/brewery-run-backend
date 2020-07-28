@@ -118,6 +118,13 @@ class User < ApplicationRecord
         self.notifications.count
     end
 
+    def new_user_notification
+        title = "Welcome #{self.first_name}!"
+        content = "Thank you for joining Beer Run! Start discoverering new circuits here."
+        link = "/circuits"
+        Notification.create(title: title, content: content, link: link, user_id: self.id)
+      end
+
     # Class Methods
     # The below two methods were pulled from https://stackoverflow.com/questions/2513383/access-current-user-in-model
     def self.current

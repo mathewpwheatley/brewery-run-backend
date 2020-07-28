@@ -4,6 +4,7 @@ class CircuitLikesController < ApplicationController
   def create
     circuit_like = CircuitLike.create(circuit_like_params)
     if circuit_like.valid?
+      # New like, send a notification to the circuit author
       circuit_like.new_like_notification
       render json: circuit_like, serializer: LikeSerializer, status: :accepted
     else

@@ -4,6 +4,7 @@ class FollowsController < ApplicationController
   def create
     follow = Follow.create(follow_params)
     if follow.valid?
+      # New follow, send the followee a notification
       follow.new_follow_notification
       render json: follow, serializer: FollowSerializer, status: :accepted
     else

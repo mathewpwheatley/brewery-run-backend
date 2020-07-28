@@ -4,11 +4,11 @@ brewery_favorite_count = 50
 brewery_like_count = 100
 brewery_review_count = 35
 circuit_count = 100
-circuit_favorite_count = 100
-circuit_like_count = 200
+circuit_favorite_count = 50
+circuit_like_count = 100
 circuit_review_count = 65
-follow_count = 100
-notification_count = 0
+follow_count = 50
+notification_count = 0 # No random notifications, just the generated ones from favorites, likes, follows, reviews
 breweries_circuit_count = 5 # breweries per circuit
 
 
@@ -50,7 +50,7 @@ User.destroy_all
 
 # User Seeds
 user_count.times do
-    User.create(
+    user = User.create(
         email: Faker::Internet.email,
         password: "password",
         password_confirmation: "password",
@@ -62,7 +62,10 @@ user_count.times do
         state: Faker::Address.state,
         postal_code: Faker::Address.zip_code,
         country: "United States",
-        about: Faker::Lorem.paragraph)
+        about: Faker::Lorem.paragraph
+    )
+    # Create welcome notification
+    user.new_user_notification
 end
 
 # Brewery Seeds
@@ -112,36 +115,48 @@ end
 # Circuit Favorite Seeds
 id_pairs = id_pair_combinations(Circuit.ids, User.ids, circuit_favorite_count)
 circuit_favorite_count.times do |n|
-    CircuitFavorite.create(
+    circuit_favorite = CircuitFavorite.create(
         circuit_id: id_pairs[n].first,
-        user_id: id_pairs[n].last)
+        user_id: id_pairs[n].last
+    )
+    # New favorite, send notification to circuit author
+    circuit_favorite.new_favorite_notification
 end
 
 # Circuit Like Seeds
 id_pairs = id_pair_combinations(Circuit.ids, User.ids, circuit_like_count)
 circuit_like_count.times do |n|
-    CircuitLike.create(
+    circuit_like = CircuitLike.create(
         circuit_id: id_pairs[n].first,
-        user_id: id_pairs[n].last)
+        user_id: id_pairs[n].last
+    )
+   # New like, send a notification to the circuit author
+   circuit_like.new_like_notification
 end
 
 # Circuit Review Seeds
 id_pairs = id_pair_combinations(Circuit.ids, User.ids, circuit_review_count)
 circuit_review_count.times do |n|
-    CircuitReview.create(
+    circuit_review = CircuitReview.create(
         title: Faker::Book.title,
         content: Faker::Lorem.sentence,
         rating: rand(1..5),
         circuit_id: id_pairs[n].first,
-        user_id: id_pairs[n].last)
+        user_id: id_pairs[n].last
+    )
+    # Send a notification to the circuit author
+    circuit_review.new_review_notification
 end
 
 # Follow Seeds
 id_pairs = id_pair_combinations(User.ids, User.ids, follow_count)
 follow_count.times do |n|
-    Follow.create(
+    follow = Follow.create(
         followee_id: id_pairs[n].first,
-        follower_id: id_pairs[n].last)
+        follower_id: id_pairs[n].last
+    )
+    # New follow, send the followee a notification
+    follow.new_follow_notification
 end
 
 # Notification Seeds

@@ -10,6 +10,7 @@ class CircuitReviewsController < ApplicationController
   def create
     circuit_review = CircuitReview.create(circuit_review_params)
     if circuit_review.valid?
+      # Valid review, send a notification to the circuit author
       circuit_review.new_review_notification
       render json: circuit_review, serializer: ReviewSerializer, status: :accepted
     else

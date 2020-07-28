@@ -4,6 +4,7 @@ class CircuitFavoritesController < ApplicationController
   def create
     circuit_favorite = CircuitFavorite.create(circuit_favorite_params)
     if circuit_favorite.valid?
+      # New favorite, send notification to circuit author
       circuit_favorite.new_favorite_notification
       render json: circuit_favorite, serializer: FavoriteSerializer, status: :accepted
     else
