@@ -16,15 +16,15 @@ ActiveRecord::Schema.define(version: 2020_07_14_200914) do
   enable_extension "plpgsql"
 
   create_table "breweries", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "brewery_type"
     t.string "street"
     t.string "city"
     t.string "state"
     t.string "postal_code"
     t.string "country"
-    t.string "longitude"
-    t.string "latitude"
+    t.string "longitude", null: false
+    t.string "latitude", null: false
     t.string "phone"
     t.string "website_url"
     t.text "tag_list"

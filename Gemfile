@@ -47,6 +47,3 @@ gem "jwt", "~> 2.2"
 
 # Build JSON APIs with ease.
 gem "active_model_serializers", "~> 0.10.10"
-
-# Brewerey Database (Used when seeding)
-gem "brewery_db"

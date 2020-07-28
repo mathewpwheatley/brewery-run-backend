@@ -67,7 +67,11 @@ end
 
 # Brewery Seeds
 require_relative '../app/apis/open_brewery_db/client.rb'
-seattle_breweries.each{|brewery| Brewery.create(brewery)}
+seattle_breweries.each do |brewery|
+    if brewery["longitude"] && brewery["latitude"]
+        Brewery.create(brewery)
+    end
+end
 
 # Brewery Favorite Seeds
 id_pairs = id_pair_combinations(Brewery.ids, User.ids, brewery_favorite_count)

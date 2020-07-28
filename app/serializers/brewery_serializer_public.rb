@@ -3,7 +3,6 @@ class BrewerySerializerPublic < ActiveModel::Serializer
     :id,
     :name,
     :brewery_type,
-    :tag_list,
     :full_address,
     :longitude,
     :latitude,

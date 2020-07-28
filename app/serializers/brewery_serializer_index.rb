@@ -3,6 +3,8 @@ class BrewerySerializerIndex < ActiveModel::Serializer
     :id,
     :name,
     :brewery_type,
+    :longitude,
+    :latitude,
     :rating,
     :likes_count,
     :favorites_count,
