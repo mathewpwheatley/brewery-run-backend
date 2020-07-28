@@ -138,8 +138,8 @@ end
 id_pairs = id_pair_combinations(Circuit.ids, User.ids, circuit_review_count)
 circuit_review_count.times do |n|
     circuit_review = CircuitReview.create(
-        title: Faker::Book.title,
-        content: Faker::Lorem.sentence,
+        title: Faker::Beer.name,
+        content: Faker::Hipster.sentence,
         rating: rand(1..5),
         circuit_id: id_pairs[n].first,
         user_id: id_pairs[n].last
