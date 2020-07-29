@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :users
   post '/log_in', to: 'users#log_in'
   post '/auto_log_in', to: 'users#auto_log_in'
-  delete '/log-_out', to: 'users#log_out'
+  delete '/log_out', to: 'users#log_out'
   get '/users/:id/edit', to: 'users#edit'
 
 end
