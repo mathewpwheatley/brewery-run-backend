@@ -7,6 +7,11 @@ class BreweriesController < ApplicationController
     render json: breweries, each_serializer: BrewerySerializerIndex, status: :ok
   end
 
+  def index_form
+    breweries = Brewery.all
+    render json: breweries, each_serializer: BrewerySerializerIndexForm, status: :ok
+  end
+
   def show
     brewery = Brewery.find(params[:id])
     if active_user
