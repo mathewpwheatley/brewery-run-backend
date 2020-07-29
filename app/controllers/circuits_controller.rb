@@ -26,14 +26,15 @@ class CircuitsController < ApplicationController
     end
   end
 
-  # def update
-  #   @circuit.update(circuit_params)
-  #   if @circuit.valid?
-  #     render json: @circuit, serializer: CircuitSerializer, status: :accepted
-  #   else
-  #     render json: {errors: @circuit.errors.full_messages}, status: :unprocessable_entity
-  #   end
-  # end
+  def update
+    circuit = Circuit.find(params[:id])
+    circuit.update(circuit_params)
+    if circuit.valid?
+      render json: circuit, serializer: CircuitSerializer, status: :accepted
+    else
+      render json: {errors: circuit.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
 
   def destroy
     circuit = Circuit.find(params[:id])

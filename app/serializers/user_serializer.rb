@@ -1,4 +1,4 @@
-class UserSerializerPublic < ActiveModel::Serializer
+class UserSerializer < ActiveModel::Serializer
   attributes(
     :id,
     :full_name,
@@ -8,7 +8,8 @@ class UserSerializerPublic < ActiveModel::Serializer
     :public_circuits_avg_rating,
     :followers_count,
     :active_user_follow_id,
-    :public_circuits
+    :public_circuits,
+    :created_at
   )
   has_many(:public_circuits, serializer: CircuitSerializerIndex)
 end

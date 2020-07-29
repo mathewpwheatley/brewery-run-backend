@@ -7,6 +7,7 @@ class ReviewSerializer < ActiveModel::Serializer
     :rating,
     :subject_name,
     :subject_id,
-    :content
+    :content,
+    :created_at
   )
 end

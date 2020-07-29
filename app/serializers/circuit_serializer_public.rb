@@ -9,7 +9,9 @@ class CircuitSerializerPublic < ActiveModel::Serializer
     :likes_count,
     :favorites_count,
     :reviews_count,
-    :rating
+    :rating,
+    :created_at,
+    :updated_at
   )
   has_many(:breweries, serializer: BrewerySerializerIndex)
   has_many(:reviews, serializer: ReviewSerializer)

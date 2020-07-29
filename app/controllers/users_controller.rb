@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       render json: user, serializer: UserSerializerActive, status: :ok
     else
       user = User.find(params[:id])
-      render json: user, serializer: UserSerializerPublic, status: :ok
+      render json: user, serializer: UserSerializer, status: :ok
     end
   end
 
