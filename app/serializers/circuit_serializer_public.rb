@@ -10,6 +10,7 @@ class CircuitSerializerPublic < ActiveModel::Serializer
     :favorites_count,
     :reviews_count,
     :rating,
+    :public,
     :created_at,
     :updated_at
   )
