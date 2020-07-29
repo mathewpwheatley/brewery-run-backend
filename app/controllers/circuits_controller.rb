@@ -45,7 +45,7 @@ class CircuitsController < ApplicationController
   private
   # Only allow a list of trusted parameters through.
   def circuit_params
-    params.require(:circuit).permit(:title, :description, :public, :user_id)
+    params.require(:circuit).permit(:title, :description, :public, :user_id, breweries_circuits_attributes: [:brewery_id])
   end
 
 end

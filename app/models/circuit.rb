@@ -14,6 +14,9 @@ class Circuit < ApplicationRecord
     validates(:title, length: { in: 10..50 })
     validates(:description, length: { in: 25..200 })
 
+    # Accepted nested attributes
+    accepts_nested_attributes_for(:breweries_circuits)
+
     # Instance Methods
     def author_name
         self.user.full_name
