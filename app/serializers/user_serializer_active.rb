@@ -7,13 +7,15 @@ class UserSerializerActive < ActiveModel::Serializer
     :full_address,
     :favorite_breweries_count,
     :brewery_reviews_count,
-    :circuits_count,
     :public_circuits_count,
     :public_circuits_avg_rating,
+    :private_circuits_count,
+    :private_circuits_avg_rating,
     :favorite_circuits_count,
     :circuit_reviews_count,
     :followers_count,
     :following_count,
+    :created_at
   )
   has_many(:private_circuits, serializer: CircuitSerializerIndex)
   has_many(:public_circuits, serializer: CircuitSerializerIndex)

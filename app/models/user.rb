@@ -73,6 +73,20 @@ class User < ApplicationRecord
         self.circuits.where(public: false)
     end
 
+    def private_circuits_count
+        self.private_circuits.count
+    end
+
+    def private_circuits_avg_rating
+        rated_circuits = self.private_circuits.filter{|circuit| !circuit.rating.is_a? String}
+        rated_circuits_count = rated_circuits.count
+        if rated_circuits_count > 0
+            (rated_circuits.reduce(0){|sum, circuit| sum + circuit.rating}.to_f/rated_circuits_count).round(2)
+        else
+            "N/A"
+        end
+    end
+
     def favorite_circuits_count
         self.favorite_circuits.count
     end
