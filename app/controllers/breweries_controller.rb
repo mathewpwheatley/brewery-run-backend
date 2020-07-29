@@ -7,9 +7,9 @@ class BreweriesController < ApplicationController
     render json: breweries, each_serializer: BrewerySerializerIndex, status: :ok
   end
 
-  def index_form
+  def form_index
     breweries = Brewery.all
-    render json: breweries, each_serializer: BrewerySerializerIndexForm, status: :ok
+    render json: breweries, each_serializer: BrewerySerializerFormIndex, status: :ok
   end
 
   def show

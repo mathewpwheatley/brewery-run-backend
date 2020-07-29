@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :breweries, only: [:index, :show]
-  get '/breweries/index-form', to: 'breweries#index_form'
+  get '/breweries_form_index', to: 'breweries#form_index'
   resources :brewery_favorites, only: [:create, :destroy]
   resources :brewery_likes, only: [:create, :destroy]
   resources :brewery_reviews, except: [:index]
