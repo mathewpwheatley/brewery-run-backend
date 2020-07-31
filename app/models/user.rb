@@ -132,6 +132,10 @@ class User < ApplicationRecord
         self.notifications.count
     end
 
+    def unread_notifications_count
+        self.notifications.where(read: false).count
+    end
+
     def new_user_notification
         title = "Welcome #{self.first_name}!"
         content = "Thank you for joining Beer Run! Start discoverering new circuits here."
