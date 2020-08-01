@@ -69,7 +69,7 @@ user_count.times do
 end
 
 # Brewery Seeds
-require_relative '../app/apis/open_brewery_db/client.rb'
+require_relative '../app/apis/open_brewery_db/seattle_breweries.rb'
 seattle_breweries.each do |brewery|
     if brewery["longitude"] && brewery["latitude"]
         Brewery.create(brewery)
