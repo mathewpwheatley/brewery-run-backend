@@ -138,7 +138,7 @@ class User < ApplicationRecord
 
     def new_user_notification
         title = "Welcome #{self.first_name}!"
-        content = "Thank you for joining Beer Run! Start discoverering new circuits here."
+        content = "Thank you for joining Brewery Run! Start discoverering new circuits here."
         link = "/circuits"
         Notification.create(title: title, content: content, link: link, user_id: self.id)
       end
