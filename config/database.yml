@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: brewery_run_backend_production
-  username: brewery_run_backend
-  password: <%= ENV['BREWERY_RUN_BACKEND_DATABASE_PASSWORD'] %>
+  # username: brewery_run_backend
+  # password: <%= ENV['BREWERY_RUN_BACKEND_DATABASE_PASSWORD'] %>
