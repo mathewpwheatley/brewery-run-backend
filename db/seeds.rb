@@ -69,7 +69,17 @@ user_count.times do
 end
 
 # Brewery Seeds
-require_relative '../app/apis/open_brewery_db/seattle_breweries.rb'
+# Required gems for API request in db/seed.rb 
+require 'net/http'
+require 'open-uri'
+require 'json'
+
+def seattle_breweries
+    uri = URI.parse("https://api.openbrewerydb.org/breweries?by_city=seattle")
+    response = Net::HTTP.get_response(uri)
+    JSON.parse(response.body)
+end
+
 seattle_breweries.each do |brewery|
     if brewery["longitude"] && brewery["latitude"]
         Brewery.create(brewery)
