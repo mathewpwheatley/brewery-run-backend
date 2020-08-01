@@ -26,8 +26,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 
 group :development, :test do
-  # Used to generate fake seed data
-  gem "faker", "~> 2.13"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -47,3 +45,6 @@ gem "jwt", "~> 2.2"
 
 # Build JSON APIs with ease.
 gem "active_model_serializers", "~> 0.10.10"
+
+# Used to generate fake seed data
+  gem "faker", "~> 2.13"
