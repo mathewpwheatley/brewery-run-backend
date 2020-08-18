@@ -111,7 +111,7 @@ class UsersController < ApplicationController
     # encode token comes from ApplicationController
     token = encode_token({user_id: user.id})
     # Create cookie which is sent with request automatically
-    cookies.signed[:jwt] = {value: token, http_only: true, expires: 2.hour.from_now, same_site: "Lax"}
+    cookies.signed[:jwt] = {value: token, http_only: true, expires: 2.hour.from_now, same_site: :lax}
     # Render json (with cookies)
     render json: user, serializer: UserSerializerLogIn, status: :accepted
   end
