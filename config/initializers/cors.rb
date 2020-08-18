@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    # Need to update this once it is published, this must be set for httponly cookies
+    # Origin must be set for httponly cookies as the wildcard * will be blocke by CORS policy
     origins 'http://localhost:3000'
 
     resource '*',
@@ -16,7 +16,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       credentials: true
   end
   allow do
-    # Need to update this once it is published, this must be set for httponly cookies
+    # Origin must be set for httponly cookies as the wildcard * will be blocke by CORS policy
     origins 'https://brewery-run.herokuapp.com'
 
     resource '*',
