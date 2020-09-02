@@ -29,7 +29,8 @@ If you instead wanted to manipulate the backend you must install it locally via 
   3. `rails db:migrate` to build database tables
   4. `rails db:seed` to seed database with sample data
   5. `EDITOR='code --wait' rails credentials:edit` to create your "/config/credientials.yml.enc" and "config/master.key" files. This contains your secret key which is required to encrypt/decrypt users passwords. Note this step assumes your code editor of choice is VS Code.
-  6. `rails s` to start the backend at default port (localhost:3000)
+  6. Run `EDITOR='code --wait' rails credentials:edit` to edit "/config/credientials.yml.enc". Add `jwt_secret: YOUR_JWT_SECRET` to the file then save and close this file. Note the `YOUR_JWT_SECRET` represents any string that will be used to encrypt/decrypt json web tokens.
+  7. `rails s` to start the backend at default port (localhost:3000)
 
 ## Contributing
 Contributions are welcome, submit a pull request!
