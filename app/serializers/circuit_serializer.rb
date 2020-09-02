@@ -5,7 +5,7 @@ class CircuitSerializer < ActiveModel::Serializer
     :author_name,
     :author_id,
     :description,
-    :elvation,
+    :elevation,
     :distance,
     :breweries_count,
     :likes_count,
