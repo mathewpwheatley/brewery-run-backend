@@ -2,8 +2,8 @@ class CircuitSerializerIndex < ActiveModel::Serializer
   attributes(
     :id,
     :title,
-    :elevation,
     :distance,
+    :elevation,
     :breweries_count,
     :favorites_count,
     :likes_count,
