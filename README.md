@@ -24,11 +24,12 @@ The user interface for Brewery Run is hosted on Heroku therefore you can access 
 If you instead wanted to manipulate the backend you must install it locally via the following steps:
 1. Assuming you are familiar with Git: Clone or fork/clone the [backend](https://github.com/mathewpwheatley/brewery-run-backend).
 2. On your local machine, from the remote git directory, run the following commands:
-  1. "bundle install" to install all required Ruby gems
-  2. "rails db:create" to create database
-  3. "rails db:migrate" to build database tables
-  4. "rails db:seed" to seed database with sample data
-  5. "rails s" to start the backend at default port (localhost:3000)
+  1. `bundle install` to install all required Ruby gems
+  2. `rails db:create` to create database
+  3. `rails db:migrate` to build database tables
+  4. `rails db:seed` to seed database with sample data
+  5. `EDITOR='code --wait' rails credentials:edit` to create your "/config/credientials.yml.enc" and "config/master.key" files. This contains your secret key which is required to encrypt/decrypt users passwords. Note this step assumes your code editor of choice is VS Code.
+  6. `rails s` to start the backend at default port (localhost:3000)
 
 ## Contributing
 Contributions are welcome, submit a pull request!
