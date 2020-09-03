@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :circuit_favorites, only: [:create, :destroy]
   resources :circuit_likes, only: [:create, :destroy]
   resources :circuit_reviews, except: [:index]
+  patch '/update_circuit_distance_elevation/:id', to: 'circuits#update_distance_elevation'
 
   resources :follows, only: [:create, :destroy]
 

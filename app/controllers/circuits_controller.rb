@@ -1,6 +1,6 @@
 class CircuitsController < ApplicationController
   # authorized comes from ApplicationController 
-  skip_before_action :authorized, only: [:index, :show]
+  skip_before_action :authorized, only: [:index, :show, :update_distance_elevation]
 
   def index
     # Only send public circuits in index, this way only a user can see their none-public circuits
@@ -36,6 +36,16 @@ class CircuitsController < ApplicationController
     end
   end
 
+  def update_distance_elevation
+    circuit = Circuit.find(params[:id])
+    circuit.update(circuit_distance_elevation_params)
+    if circuit.valid?
+      render json: circuit, serializer: CircuitSerializerPublic, status: :accepted
+    else
+      render json: {errors: circuit.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     circuit = Circuit.find(params[:id])
     circuit.destroy
@@ -45,7 +55,12 @@ class CircuitsController < ApplicationController
   private
   # Only allow a list of trusted parameters through.
   def circuit_params
-    params.require(:circuit).permit(:title, :description, :public, :user_id, :distance, :elevation, breweries_circuits_attributes: [:brewery_id])
+    params.require(:circuit).permit(:title, :description, :public, :user_id, breweries_circuits_attributes: [:brewery_id])
+  end
+
+  # Only allow a list of trusted parameters through (Distance and Elevation specific).
+  def circuit_distance_elevation_params
+    params.require(:circuit).permit(:distance, :elevation)
   end
 
 end
