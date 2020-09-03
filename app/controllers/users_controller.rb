@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def log_out
-    cookies.delete(:jwt)
+    cookies.delete(:jwt, options = {same_site: :none, secure: true})
     render json: {messages: ["JWT HTTP only cookie deleted, user has been logged out"]}, status: :ok
 
   end
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
     # Check if user is requesting information for themselves
     if user.id == params[:id].to_i
       user.destroy
-      cookies.delete(:jwt) # This logs the user out on the frontend
+      cookies.delete(:jwt, options = {same_site: :none, secure: true}) # This logs the user out on the frontend
       render json: {messages: ['User account has been delete']}, status: :ok
     else
       render json: {messages: ["User can only edit their own account"]}, status: :unauthorized
